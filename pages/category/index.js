@@ -28,6 +28,7 @@ Page({
     if (!Cates) {
       this.getCates();
     }else{
+      // 设置缓存过期时间
       if (Date.now()-Cates.time>1000*10) {
         // 超过过期时间，重新发送请求
         this.getCates();
@@ -46,7 +47,7 @@ Page({
   // 获取分类数据
   getCates() {
     request({
-      url: "https://api-hmugo-web.itheima.net/api/public/v1/categories"
+      url: "/categories"
     }).then(res => {
       this.Cates = res.data.message;
       // 把接口数据存入本地存储中
