@@ -1,4 +1,5 @@
-import { request } from '../../request/index'
+import { request } from '../../request/index';
+import regeneratorRuntime from '../../lib/runtime/runtime'
 
 Page({
 
@@ -45,22 +46,19 @@ Page({
   },
 
   // 获取分类数据
-  getCates() {
-    request({
-      url: "/categories"
-    }).then(res => {
-      this.Cates = res.data.message;
-      // 把接口数据存入本地存储中
-      wx.setStorageSync("cates", {time:Date.now(),data:this.Cates});
-      // 构造左侧大菜单数据
-      let leftMenuList = this.Cates.map(v=>v.cat_name);
-      // 构造右侧商品数据
-      let rightContent = this.Cates[0].children;
+  async getCates() {
+    const res=await request({url:"/categories"});
+    this.Cates = res;
+    // 把接口数据存入本地存储中
+    wx.setStorageSync("cates", {time:Date.now(),data:this.Cates});
+    // 构造左侧大菜单数据
+    let leftMenuList = this.Cates.map(v=>v.cat_name);
+    // 构造右侧商品数据
+    let rightContent = this.Cates[0].children;
 
-      this.setData({
-        leftMenuList,
-        rightContent,
-      })
+    this.setData({
+      leftMenuList,
+      rightContent,
     })
   },
 
