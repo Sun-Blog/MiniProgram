@@ -24,7 +24,7 @@ Page({
 
   // 获取轮播图数据
   getSwiperList(){
-    request({ url: "https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata" })
+    request({ url: "/home/swiperdata" })
     .then(result => {
       this.setData({
         swiperList:result.data.message
@@ -33,7 +33,7 @@ Page({
   },
   // 获取分类导航数据
   getCatesList(){
-    request({ url: "https://api-hmugo-web.itheima.net/api/public/v1home/catitems" })
+    request({ url: "/home/catitems" })
     .then(result => {
       this.setData({
         catesList:result.data.message
@@ -42,7 +42,7 @@ Page({
   },
   // 获取商品分类数据
   getFloorList(){
-    request({ url: "https://api-hmugo-web.itheima.net/api/public/v1/home/floordata" })
+    request({ url: "/home/floordata" })
     .then(result => {
       this.setData({
         floorList:result.data.message
