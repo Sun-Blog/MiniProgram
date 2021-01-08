@@ -62,8 +62,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/category/index",
-          "pathName": "pages/category/index",
+          "name": "商品列表",
+          "pathName": "pages/goods_list/index",
+          "query": "cid=5",
           "scene": null
         }
       ]
