@@ -75,7 +75,7 @@ Page({
       const res = await requestPayment(pay);
 
       // 查询后台 订单状态
-      const res = await request({url:"/my/orders/chkOrder",method:"post",data:{order_number}});
+      const order = await request({url:"/my/orders/chkOrder",method:"post",data:{order_number}});
       await showToast({title: "支付成功"});
 
       // 删除缓存中已经支付的商品

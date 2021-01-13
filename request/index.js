@@ -3,7 +3,7 @@ let ajaxTime=0;
 export const request=(params)=>{
     // 判断url中是否带有 /my/请求的私有路径
     let header = {...params.header};
-    if (parans.url.includes("/my/")) {
+    if (params.url.includes("/my/")) {
         header["Authorization"] = wx.getStorageSync("token");
     }
 
