@@ -51,7 +51,7 @@ Page({
         return;
       }
       // 设置请求头
-      const header = {Authorization:token};
+      // const header = {Authorization:token};
 
       // 准备请求体参数
       const order_price = this.data.totalPrice;
@@ -66,16 +66,16 @@ Page({
       const orderParams = { order_price, consignee, goods };
 
       // 准备发送请求  创建订单  获取订单编号
-      const {order_number} = await request({url:"/my/orders/create",method:"post",data:orderParams,header});
+      const {order_number} = await request({url:"/my/orders/create",method:"post",data:orderParams});
 
       // 发起预支付接口
-      const {pay} = await request({url:"/my/orders/req_unifiedorder",method:"post",header,data:{order_number}});
+      const {pay} = await request({url:"/my/orders/req_unifiedorder",method:"post",data:{order_number}});
 
       // 发起微信支付
       const res = await requestPayment(pay);
 
       // 查询后台 订单状态
-      const res = await request({url:"/my/orders/chkOrder",method:"post",header,data:{order_number}});
+      const res = await request({url:"/my/orders/chkOrder",method:"post",data:{order_number}});
       await showToast({title: "支付成功"});
 
       // 删除缓存中已经支付的商品
