@@ -102,6 +102,12 @@
           "pathName": "pages/collect/index",
           "query": "goods_id=29914",
           "scene": null
+        },
+        {
+          "name": "搜索中心",
+          "pathName": "pages/search/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
