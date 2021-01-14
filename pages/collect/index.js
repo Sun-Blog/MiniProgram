@@ -5,62 +5,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    collect:[],
+    tabs: [
+      {
+        id: 0,
+        name: "商品收藏",
+        isActive: true,
+      },{
+        id: 1,
+        name: "品牌收藏",
+        isActive: false,
+      },{
+        id: 2,
+        name: "店铺收藏",
+        isActive: false,
+      },{
+        id: 3,
+        name: "浏览足迹",
+        isActive: false,
+      }
+    ]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onShow(){
+    const collect = wx.getStorageSync("collect")||[];
+    this.setData({
+      collect
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  // 根据标题索引来激活选中标题数组
+  changeTitleByIndex(index){
+    // 修改原属组
+    let {tabs} = this.data;
+    tabs.forEach((v,i) => i === index ? v.isActive = true : v.isActive = false);
+    // 重新复制data
+    this.setData({
+      tabs
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // tab切换
+  handleTabsItemChange(e){
+    // 获取点击标题索引
+    const {index} = e.detail;
+    this.changeTitleByIndex(index)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
