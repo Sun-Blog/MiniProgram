@@ -5,7 +5,7 @@
   <view class="index_swiper">
     <swiper autoplay indicator-dots circular>
       <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
-        <navigator>
+        <navigator url="/pages/goods_detail/index?goods_id={{item.goods_id}}">
           <image mode="widthFix" src="{{item.image_src}}" />
         </navigator>
       </swiper-item>
@@ -13,7 +13,12 @@
   </view>
   <!-- 导航分类 -->
   <view class="index_cate">
-    <navigator wx:for="{{catesList}}" wx:key="name">
+    <navigator
+    wx:for="{{catesList}}"
+    wx:key="name"
+    url="/pages/category/index"
+    open-type="switchTab"
+    >
       <image mode="widthFix" src="{{item.image_src}}" />
     </navigator>
   </view>
@@ -36,6 +41,7 @@
         wx:for-item="item2"
         wx:for-index="index2"
         wx:key="name"
+        url="{{item2.navigator_url}}"
         >
           <image mode="{{index2===0?'widthFix':'scaleToFill'}}" src="{{item2.image_src}}"></image>
         </navigator>
